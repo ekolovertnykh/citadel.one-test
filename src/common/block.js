@@ -1,22 +1,22 @@
 class TezosBlock {
 	constructor(number, api) {
-		this.number = number
+		this.block_number = number
 		this.api = api
-		this.data = null
+		this.block_data = null
 	}
 
 	async loadData() { 
-		const { data } = await this.api.sendRequest(this.number)
-		this.data = data
+		const { data } = await this.api.sendRequest(this.block_number)
+		this.block_data = data
 		return this
 	}
 
 	getBlockBaker() {
-		return this.data?.metadata?.baker || null
+		return this.block_data?.metadata?.baker || null
 	}
 
 	getBakerFee() {
-		const updates = this.data?.metadata?.balance_updates
+		const updates = this.block_data?.metadata?.balance_updates
 		if (!updates) {
 			return null
 		}

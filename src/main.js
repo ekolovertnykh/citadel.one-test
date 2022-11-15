@@ -5,14 +5,15 @@ import memory from './common/heap.js'
 
 async function main() {
 	api.setBaseUrl('https://jakartanet.smartpy.io/chains/main/blocks/')
+
 	const promises = []
 	for (let blockNumber = 832543; blockNumber <= 832546; blockNumber++) {
 		const blockInstance = new TezosBlock(blockNumber, api)
 		const promise = blockInstance.loadData()
 		promises.push(promise)
 	}
-
 	const results = await Promise.all(promises)
+	
 	const fees = {}
 	while (results.length > 0) {
 		const block = results.pop()
