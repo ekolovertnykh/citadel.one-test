@@ -6,10 +6,6 @@ class Api {
 		timeout: 5000
 	}
 
-	setHeaders(headers) {
-		this.headers = headers
-	}
-
 	setBaseUrl(url) {
 		this.#config.baseURL = url
 	}
